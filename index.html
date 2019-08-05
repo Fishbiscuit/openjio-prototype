@@ -71,7 +71,7 @@
 
     <script id="hackSpotsTable" type="text/html">
         <table>
-            <tr><th class="tHeader">Name</th><th class="tHeader">Address</th><th class="tHeader">Date</th><th class="tHeader">Time</th><th class="">Directions</th></tr>
+            <tr><th class="tHeader">Name</th><th class="tHeader">Address</th><th class="tHeader">Date</th><th class="tHeader">Time</th><th class="">GMaps</th></tr>
             {{#rows}}
                 <tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{address}}</td><td>{{date}}</td><td>{{time}}</td><td><a class="button" href="https://maps.google.com/maps?q={{address}},{{city}},Singapore" target="_blank">G Map</a></td></tr>
             {{/rows}}

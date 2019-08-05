@@ -11,8 +11,8 @@
 /* Table */
 
   table {text-align: left; width: 100%}
-  th {padding: 10px 10px;}
-  td, text {padding: 5px 0 5px 0; font-size: 14px;}
+  th {padding: 4px 4px;}
+  td, text {padding: 3px 0 3px 0; font-size: 10px;}
   #tableFilter {margin: 0px 0px; border: none; border-bottom: 1px solid #333; background-color: transparent; padding: 0px; font-family: Merriweather; color: #fff; font-size: 12px; height: 15px;}
   .noMatches {margin-left: 20px; font-size: 11px; font-style: italic; visibility: hidden;}
 
