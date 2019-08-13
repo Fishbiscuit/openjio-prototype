@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>OpenJio</title>
+        <title>Hack Spots</title>
         <meta charset='utf-8'>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -23,14 +23,12 @@
 <body>
 
     <div id="wrapper">
-        <h1>Events!</h1>
+        <h1>OpenJio</h1>
+        <p>We seek to ignite people’s curiosity in social issues, and create a learning community of people who care. Stay OPEN & JIO ur friends!😊</p>
         <div>
             <ul class="nav">
-                <li><a href="#info">CURATED BY OPENJIO</a> -</li>
-                <li><a href="http://jlord.github.com/sheetsee.js" target="_blank">POWERED BY SHEETSEE.JS</a> -</li>
-                <li><a href="http://www.github.com/fishbiscuit/openjio-prototype" target="_blank">GITHUB</a> -</li>
                 <li><a href="https://t.me/OpenJio" target="_blank">TELE</a> -</li>
-
+                <li><a href="https://www.instagram.com/openjio/" target="_blank">INSTA</a> -</li>
             </ul>
         </div>
         <div class="container">
@@ -39,15 +37,6 @@
                 <div id="selectedSpot"></div>
             </div>
             <div id="map"></div>
-        </div>
-        <div id="info" class="container">
-            <h3>Using this page</h3>
-            <p>There's some really handy functionality built into this page!</p>
-            <ul>
-                <li><span class="category">Filter - </span> search for events according to key words!</li>
-                <li><span class="category">Sort - </span> click the buttons beside the headers</li>
-                <li><span class="category">Gmaps - </span> directions are provided on the rightmost column!</li>
-            </ul>
         </div>
         <div class="container">
             <input id="tableFilter" type="text" placeholder="filter by.."></input>
@@ -60,18 +49,14 @@
             <div id="theNumberofSpots"></div>
             <p>This website is hooked up to <a href="https://docs.google.com/spreadsheets/d/1JoKfecHlIK2Sj1740eErlHkVeXXMTAtAPbESnT0g7x0/edit?usp=sharing" target="_blank">this Google Spreadsheet</a>, which I've shared. You can always remove it from the page once you've set it up. You'll need to <strong>get the lat and long</strong> of the spot, you can get that <a href="http://www.latlong.net/" target="_blank">here</a>. The locating of these places is helpful, so please try to fill out all the columns.</p>
 
-            <h3>Info</h3>
-            <p>We seek to ignite people’s curiosity in social issues, and create a learning community of people who care. </p>
-            <p>Stay OPEN & JIO ur friends!😊</p>
-
-            <h3>Conjunct Academy</h3>
-            <p>This is a work-in-progress example of a Conjunct Acaemy OOTB Product - which means, you've got a live and hosted website instantly once you fork the repository and host it on Github Pages. Just copy the spreadsheet headers and create your own spreadsheet, swap out the spreadsheet key in index.html and commit those changes.</p>
+            <h3>Conjunct Commons</h3>
+            <p>This is a work-in-progress example of a Conjunct OOTB Product - which means, you've got a live and hosted website instantly once you fork the repository and host it on Github Pages. Just copy the spreadsheet headers and create your own spreadsheet, swap out the spreadsheet key in index.html and commit those changes.</p>
         </div>
     </div><!-- end wrapper -->
 
     <script id="hackSpotsTable" type="text/html">
         <table>
-            <tr><th class="tHeader">Name</th><th class="tHeader">Address</th><th class="tHeader">Date</th><th class="tHeader">Time</th><th class="">GMaps</th></tr>
+            <tr><th class="tHeader">Name</th><th class="tHeader">Address</th><th class="tHeader">Date</th><th class="tHeader">Time</th><th class="">Directions</th></tr>
             {{#rows}}
                 <tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{address}}</td><td>{{date}}</td><td>{{time}}</td><td><a class="button" href="https://maps.google.com/maps?q={{address}},{{city}},Singapore" target="_blank">G Map</a></td></tr>
             {{/rows}}
@@ -83,16 +68,25 @@
             <h4 class="fauxButton">MOST RECENT EVENT</h4>
             <h2>{{name}}</h2>
             <p class="colorText">{{address}}<p>
-            <p class="colorText">{{city}}{{#sate}}, {{sate}}{{/sate}}{{#postcode}}, {{postcode}}{{/postcode}}</p><br>
+            <p class="colorText">{{city}}{{#date}}, {{date}}{{/date}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
             <ul>
-                <li><span class="category">Sign-up Link:</span> <a href="{{signuplink}}" target="_blank">here</a></li>
-                <li><span class="category">Ticket Price:</span> {{ticketprice}}</li>
-                <li><span class="category">Contributed By:</span>{{contributer}}</li>
-                <li><span class="category">Details:</span> <a href="https://fishbiscuit.github.io/openjio-prototype/details.html{{details}}" target="_blank">here</a></li>
+                <li><span class="category">Date and Time:</span> {{#date}} {{date}}{{/date}}, {{time}}
+                <li><span class="category">Details:</span> <a href="messages.html{{details}}" target="_blank">here</a></li>
+                <li><span class="category">Social causes:</span>{{causes}}</li>
             </ul>
             <ul>
-                <li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{date}" target="_blank">View in Google Maps</a></li>
+                <li><span class="poster" onclick="openNav()">View Poster</span></li>
+                <li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{date}}" target="_blank">View in Google Maps</a></li>
             </ul>
+
+            <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+                <img src="photos/{{poster}}">
+            </div>
+            </div>
+            </div>
+
         {{/rows}}
     </script>
 
@@ -107,16 +101,44 @@
             <p class="colorText">{{address}}<p>
             <p class="colorText">{{city}}{{#date}}, {{date}}{{/date}}{{#postcode}}, {{postcode}}{{/postcode}}</p>
             <ul>
-                <li><span class="category">Sign-up Link:</span> <a href="{{signuplink}}" target="_blank">here</a></li>
-                <li><span class="category">Ticket Price:</span> {{ticketprice}}</li>
-                <li><span class="category">Contributed By:</span>{{contributer}}</li>
-                <li><span class="category">Details:</span> <a href="https://fishbiscuit.github.io/openjio-prototype/details.html{{details}}" target="_blank">here</a></li>
+                <li><span class="category">Date and Time:</span> {{#date}} {{date}}{{/date}}, {{time}}
+                <li><span class="category">Details:</span> <a href="messages.html{{details}}" target="_blank">here</a></li>
+                <li><span class="category">Social causes:</span>{{causes}}</li>
             </ul>
             <ul>
+                <li><span class="poster" onclick="openNav2()">View Poster</span></li>
                 <li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{date}}" target="_blank">View in Google Maps</a></li>
             </ul>
+
+            <div id="myNav2" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
+            <div class="overlay-content">
+                <img src="photos/{{poster}}">
+            </div>
+            </div>
+            </div>
+
         {{/rows}}
     </script>
+    <script>
+    function openNav() {
+    document.getElementById("myNav").style.height = "100%";
+    }
+
+    function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+    }
+
+        function openNav2() {
+    document.getElementById("myNav2").style.height = "100%";
+    }
+
+    function closeNav2() {
+    document.getElementById("myNav2").style.height = "0%";
+    }
+
+    </script>
+
 
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
@@ -171,7 +193,7 @@
                 $('#latestSpot').css("display", "none")
                 $('#selectedSpot').html(selectedSpot).css("display", "inline")
                 var selectedCoords = [dataElement[0].lat, dataElement[0].long]
-                map.setView(selectedCoords, 20)
+                map.setView(selectedCoords, 18)
             })
 
             // so that the first map and info that loads

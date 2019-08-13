@@ -1,14 +1,18 @@
 /* Page Specific CSS */
 
 body {font-family: monospace; background: #fff; color: #333; font-size: 16px; border: 52px #F8F8F8 solid; margin: 0px; padding: 20px 20px 200px 20px;}
-h1 {font-size: 80px; font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif; font-weight: normal; margin: 0px;}
-h2 {font-size: 30px; font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif; font-weight: normal; margin: 11px 0px;}
+h1 {font-size: 40px; font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif; font-weight: normal; margin: 0px;}
+h2 {font-size: 25px; font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif; font-weight: normal; margin: 11px 0px;}
 h3 {font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif; font-size: 20px; margin: 10px 0px;}
 h4 {font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif; font-size: 24px;}
 
-img {width: 100%;} 
+img {  
+  width: 100%;
+  max-width:500px;
+  height: auto;
+} 
 p a, a {color: #333; text-decoration: none; padding-bottom: 0px; border-bottom: 1px #FD9393 solid;}
-a:hover {color: #47CCFC;}
+a:hover {background-color: rgb(200, 255, 70); color: rgb(0,0,0);}
 small {padding: 10px 0px; font-size: 10px;}
 p {margin: 0px; padding: 0px; font-size: 12px;}
 li {line-height: 19px; font-size: 12px;}
@@ -17,6 +21,57 @@ a.button {border: none;}
 
 pre {word-wrap: break-word; padding: 14px; background: #F0F0F0; }
 code {font-family: "Consolas", "Ubuntu Mono", monospace; line-height: 22px; font-size: 13px; color: #636363; font-weight: normal;}
+
+.overlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-y: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 5%;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.overlay a {
+  padding: 4px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 1%;
+  right: 5%;
+  font-size: 30px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
 
 .red-text {color: #FD9393;}
 
@@ -37,10 +92,10 @@ ul.nav li a:hover {border-bottom: 1px #FD9393 solid;}
 #wrapper {margin: 0px auto; max-width: 900px; padding-top: 40px; /*margin-left: 250px;*/}
 
 .button {padding: 5px 5px; background-color: #BEBEBE; font-size: 10px; color: #fff;}
-.button:hover {background: #B9FCFC; color: #47CCFC;}
-.fauxButton {padding: 5px 5px; background-color: #FF4646; font-size: 11px; color: #fff; display: inline;}
-.fauxButton .selected {background-color: #FF4646;}
-.colorText {color: #FF4646; text-transform: uppercase; font-weight: 700;}
+.button:hover {background: rgb(200, 255, 70); color: rgb(0,0,0); border: 1px solid black;}
+.fauxButton {padding: 5px 5px; background-color: rgb(200, 255, 70); font-size: 11px; color: rgb(0, 0, 0); display: inline;}
+.fauxButton .selected {background-color: rgb(200, 255, 70);}
+.colorText {color: rgb(0,0,0); text-transform: uppercase; font-weight: 700;}
 
 .leaflet-popup-content h2 {font-family: Lato; font-size: 14px; text-transform: uppercase;}
 
@@ -48,6 +103,8 @@ ul.nav li a:hover {border-bottom: 1px #FD9393 solid;}
 #selectedSpot {display: none;}
 #latestSpot ul, #selectedSpot ul {list-style: none; margin-top: 12px 0px; padding: 0px;}
 .category {text-transform: uppercase; font-size: 9px; letter-spacing: .2em; padding-right: 6px;}
+.poster {color: #333; text-decoration: none; padding-bottom: 0px; border-bottom: 1px #FD9393 solid;}
+.poster:hover {cursor: pointer; background-color: rgb(200, 255, 70); color: rgb(0,0,0); text-decoration: none; padding-bottom: 0px; border-bottom: 1px #FD9393 solid;}
 
 #info p {font-size: 14px; padding: 4px; line-height: 19px; font-weight: 300;}
 #info {border-top: 4px #F8F8F8 solid;}
@@ -56,10 +113,10 @@ ul.nav li a:hover {border-bottom: 1px #FD9393 solid;}
 #hackSpotsTable table {min-width: 100%;}
 #hackSpotsTable .tHeader:hover {color: #FF4646;}
 .tHeader::after {content: " \2193 \2191 "; font-size: 10px; padding-left: 4px;}
-.spotRow:hover {color: #FF4646;}
+.spotRow:hover {background-color: rgb(200, 255, 70); color: rgb(0,0,0);}
 .spotRow {border-left: 3px solid #ff00ff;}
 .hideRow {display: none;}
-.selectedRow {color: #FF4C0D;}
+.selectedRow {background-color: rgb(200, 255, 70); color: rgb(0,0,0);}
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 320px) and (max-width: 1024px) {
   body {border: 20px #F8F8F8 solid; margin: 0px; padding: 20px 20px 80px 20px;}
